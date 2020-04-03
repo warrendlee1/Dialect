@@ -18,7 +18,7 @@ export default class Upload extends React.Component{
             <div style = {{backgroundColor: "#e8e8e8", height: 903, }}>
                 <div style = {{ marginLeft: "21.25%",display:"flex", flexDirection:"row", marginRight:"21.25%",  }}>
                     <div style = {{  marginTop: "10%",width: "50%", height: "2%", marginLeft: "auto", marginRight: "auto" }}>
-                        <Dropzone onDrop={this.state.files += 1}>
+                        <Dropzone >
                             {({ getRootProps, getInputProps }) => (
                             <div {...getRootProps({ className:"dropzone"})} style = {{textAlign: "center",
                             padding: 20,
@@ -32,10 +32,10 @@ export default class Upload extends React.Component{
                             </div>
                             )}
                         </Dropzone>
-                        <Button onClick = {this.state.files += 1} href="/" style = {{ marginTop: "5%", paddingLeft: "5%", paddingRight: "5%", color: "white", fontFamily:"Avenir", fontWeight:"bold", backgroundColor: "rgb(56, 69, 166)", marginLeft: "80%", }}>
+                        <Button href="/" style = {{ marginTop: "5%", paddingLeft: "5%", paddingRight: "5%", color: "white", fontFamily:"Avenir", fontWeight:"bold", backgroundColor: "rgb(56, 69, 166)", marginLeft: "80%", }}>
                             Submit
                         </Button>
-                        <p>{this.state.files}</p>
+                        {/* <p>{this.state.files}</p> */}
 
                         
                     </div>
