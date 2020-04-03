@@ -2,56 +2,77 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFileWord } from '@fortawesome/free-solid-svg-icons'
+import Divider from '@material-ui/core/Divider';
+import FileViewer from 'react-file-viewer';
+
 
 
 const feedData = [
     {
-        title: "Essay1",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        ,
+        title: "The Art of War",
+        author:"Warren Lee",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        fileType: ".doc",
+        file: "",
         essayLink: "https://essayspirit.com/wp-content/uploads/2019/06/History-essay-example.jpg",
         id:"0001",
     },
     {
-        title: "Essay2",
+        title: "A Recap of World War 2",
+        author:"Bobby Bobs",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         ,
         essayLink: "https://essayspirit.com/wp-content/uploads/2019/06/History-essay-example.jpg",
         id:"0002",
     },
     {
-        title: "Essay3",
+        title: "Adventures in the Pacific",
+        author:"Mina Hanna",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         ,
         essayLink: "https://essayspirit.com/wp-content/uploads/2019/06/History-essay-example.jpg",
         id:"0003",
     },
-    {
-        title: "Essay4",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        ,
-        essayLink: "https://essayspirit.com/wp-content/uploads/2019/06/History-essay-example.jpg",
-        id:"0004",
-    },
-    {
-        title: "Essay5",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        ,
-        essayLink: "https://essayspirit.com/wp-content/uploads/2019/06/History-essay-example.jpg",
-        id:"0005",
-    },
-    {
-    title: "Essay6",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    ,
-    essayLink: "https://essayspirit.com/wp-content/uploads/2019/06/History-essay-example.jpg",
-    id:"0006",
-    }
 ];
 
 export default class Home extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            fileId: null,
+        }
 
+    }
     render() {
+        if(this.state.fileId != null) {
+            return (
+                <div style = {{backgroundColor: "#e8e8e8",  }}>
+                    <div style = {{ height: 905, marginLeft: "21.25%",display:"flex", flexDirection:"row", marginRight:"21.25%",  }}>
+                        <div style = {{ width: "65%", height: "96%", marginTop: "1%",}}>
+                            <Card style = {{height: "100%", overflowY: 'scroll',   }}>   
+                                <img src={feedData[this.state.fileId].essayLink} alt = "img"/>
+                                <FileViewer
+                                    fileType={type}
+                                    filePath={file}
+                                    errorComponent={CustomErrorComponent}
+                                    onError={this.onError}/>
+                                />
+                            </Card>
+                        </div>
+                        <div style = {{width: "35%", height: "96%", marginLeft: "1%", marginTop: "1%", }}>
+                            <Card style = {{height: "100%"}}>
+                                <CardContent>
+                                    <Typography color="textSecondary" gutterBottom>Comments</Typography>
+                                </CardContent>
+
+                            </Card>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return ( 
             <div style = {{backgroundColor: "#e8e8e8",  }}>
                 <div style = {{ height: 905, marginLeft: "21.25%",display:"flex", flexDirection:"row", marginRight:"21.25%",  }}>
@@ -60,21 +81,28 @@ export default class Home extends React.Component{
                             <CardContent style = {{marginLeft:"3%", }}>
                                 <Typography color="textSecondary" gutterBottom>Latest</Typography>
                             </CardContent> 
-                            
                             {
                                 feedData.map((item,index) =>(
-                                    <div boxShadow={0} style = {{ marginLeft: "3%", marginBottom: "5%", height: "20%", borderColor: "gray",display:"flex", flexDirection:"row" }}>
-                                        <img href = "google.com" style = {{height: "80%" , marginLeft: "3%", marginTop: "3%", marginBottom: "auto" }} src={item.essayLink} alt = "poop"/>
-                                        <div style = {{ marginTop: "3%", marginLeft: "3%", marginRight: "10%", }}>
-                                            <Typography style = {{ fontSize: 24, fontWeight: "bold" ,  }}>
-                                                {item.title}
+                                    <div boxShadow={0} style = {{ marginLeft: "3%", marginBottom: "3%", height: "20%", borderColor: "gray",display:"flex", flexDirection:"row" }}>
+                                        <div style = {{ marginLeft: "3%", marginRight: "10%", }}>
+                                            <div onClick={ () => {
+                                                this.setState({fileId: index})
+                                                }
+                                            }>
+                                                <div style = {{display: 'flex',  flexDirection:'row'}}>
+                                                    <Typography style = {{ fontSize: 26, fontWeight: "bold" ,  }}>
+                                                        {item.title}
+                                                    </Typography>
+                                                    <FontAwesomeIcon icon={faFileWord} size = "1x" style = {{marginLeft: "1%",}}/>
+                                                </div>                                            
+                                            </div>
+                                            <Typography style = {{fontStyle:"italic", marginBottom: "2%"}}>
+                                                by {item.author}
                                             </Typography>
-                                            <Typography style = {{ fontSize: 12,  }}>
+                                            <Typography style = {{ fontSize: 14,  }}>
                                                 {item.description}
                                             </Typography>
-                                            <Typography style = {{fontSize: 10,}}>
-                                                    {item.id}
-                                            </Typography>
+                                            <Divider light style = {{marginTop: "4%",}}/>
                                         </div>
                                     </div>
                                 ))
@@ -91,6 +119,6 @@ export default class Home extends React.Component{
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }

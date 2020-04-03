@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
  
 import Home from './Home';
 import About from './About';
+import Upload from './Upload';
 import Header from './Header';
  
 class App extends Component {
@@ -12,10 +13,11 @@ class App extends Component {
         <div>
             <Header/>
             <Switch>
-             <Route path="/" component={Home} exact/>
-             <Route path="/about" component={About}/>
-            <Route component={Error}/>
-           </Switch>
+                <Route path="/" component={Home} exact/>
+                <Route path="/about" component={About}/>
+                <Route path="/upload" component={Upload}/>
+                <Route component={Error}/>
+            </Switch>
         </div> 
       </BrowserRouter>
     );
