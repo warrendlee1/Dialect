@@ -12,45 +12,58 @@ import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-
 const feedData = [
     {
         title: "The Art of War",
         author:"Warren Lee",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         file: "https://essayspirit.com/wp-content/uploads/2019/07/leadership-style-essay-1-638.jpg",
-        comments: ["comment1", "comment2"]
+        comments:
+            [
+                {
+                    commenter: "Bobby Johnson", 
+                    content: "What is leadership, blah blah blah blah",
+                },
+                {
+                    commenter: "Sally Brown",
+                    content: "I have a question, blah blah blah blah",
+                },
+                {
+                    commenter: "gi joe",
+                    content: "I asdf a question, blah blah blah blah",
+                }
+            ]
     },
-    // {
-    //     title: "History of World",
-    //     author:"Bobby Jones",
-    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    //     file: "https://essayspirit.com/wp-content/uploads/2019/06/History-essay-example.jpg",
-    // },
-    // {
-    //     title: "Politics in America",
-    //     author:"Anacan Mangelsdorf",
-    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    //     file: "https://i.pinimg.com/originals/03/3c/65/033c65d93b4ba3d93a163596fba5aeee.jpg",
-    // },
-    // {
-    //     title: "JavaScript Programming",
-    //     author:"Mina Hanna",
-    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    //     file: "https://images.examples.com/wp-content/uploads/2017/05/Advanced-Essay-Writing1.jpg",
-    // },
-    // {
-    //     title: "Philosophy of Life",
-    //     author:"Sally Brown",
-    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    //     file: "https://image.slidesharecdn.com/successdefinitionessay-110523053505-phpapp01/95/success-definition-essay-1-728.jpg?cb=1306128967",
-    // },
-    // {
-    //     title: "World War 2",
-    //     author:"Sammy Dawson",
-    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    //     file: "https://cdn.thinglink.me/api/image/1008110833252696066/1024/10/scaletowidth",
-    // },
+    {
+        title: "History of World",
+        author:"Bobby Jones",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        file: "https://essayspirit.com/wp-content/uploads/2019/06/History-essay-example.jpg",
+    },
+    {
+        title: "Politics in America",
+        author:"Anacan Mangelsdorf",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        file: "https://i.pinimg.com/originals/03/3c/65/033c65d93b4ba3d93a163596fba5aeee.jpg",
+    },
+    {
+        title: "JavaScript Programming",
+        author:"Mina Hanna",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        file: "https://images.examples.com/wp-content/uploads/2017/05/Advanced-Essay-Writing1.jpg",
+    },
+    {
+        title: "Philosophy of Life",
+        author:"Sally Brown",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        file: "https://image.slidesharecdn.com/successdefinitionessay-110523053505-phpapp01/95/success-definition-essay-1-728.jpg?cb=1306128967",
+    },
+    {
+        title: "World War 2",
+        author:"Sammy Dawson",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        file: "https://cdn.thinglink.me/api/image/1008110833252696066/1024/10/scaletowidth",
+    },
 ];
 
 export default class Home extends React.Component{
@@ -59,7 +72,6 @@ export default class Home extends React.Component{
         this.state = {
             fileId: null,
         }
-
     }
     render() {
         if(this.state.fileId != null) {
@@ -86,52 +98,42 @@ export default class Home extends React.Component{
                                     <Typography color="textSecondary" gutterBottom>Latest Activity</Typography>
                                     <div style = {{ flex: 1, height: "95%", display: "flex", flexDirection: "column", justifyContent: "space-between",}}>
                                         <List> 
-
                                             {
-                                            feedData.map((item) => (
-                                                <div>
-                                                    <ListItem alignItems="flex-start">
-                                                        <ListItemText
-                                                        primary="Bobby Johnson"
-                                                        secondary={
-                                                            <React.Fragment>
-                                                                <Typography
-                                                                    component="span"
-                                                                    variant="body2"
-                                                                    color="textPrimary"
-                                                                >
-                                                                What is Leadership?
-                                                                </Typography>
-                                                                {
-                                                                    item.comments
+                                                feedData[this.state.fileId].comments === undefined ?
+                                                null
+                                                :
+                                                 (feedData[this.state.fileId].comments.map((comment) => (
+                                                        <div>
+                                                            <ListItem alignItems="flex-start">
+                                                                <ListItemText
+                                                                primary = {comment.commenter}
+                                                                secondary={
+                                                                    <React.Fragment>
+                                                                        <Typography
+                                                                            component="span"
+                                                                            variant="body2"
+                                                                            color="textPrimary"
+                                                                        >
+                                                                        </Typography>
+                                                                        {
+                                                                            comment.content
+                                                                        }
+                                                                    </React.Fragment>
                                                                 }
-                                                            </React.Fragment>
-                                                        }
-                                                        />
-                                                    </ListItem>
-                                                    <Divider component="li" style = {{marginLeft: "2%", marginRight: "2%",}}/>
-                                                </div>
-                                            ))
+                                                                />
+                                                            </ListItem>
+                                                            <Divider component="li" style = {{marginLeft: "2%", marginRight: "2%",}}/>
+                                                        </div>  
+                                                    ))         
+                                                )
                                             }
-
                                         </List>
                                         <div style = {{display: "flex", flexDirection: "column", marginLeft: "2%", marginRight: "2%" }}>
-                                            <TextField
-                                                id="filled-multiline-flexible"
-                                                label="Comment on this Essay"
-                                                multiline
-                                                style = {{marginBottom:"8%",}}
-                                                // rowsMax="4"
-                                                // value={value}
-                                                // onChange={handleChange}
-                                            />
+                                        
+
                                             <Button style = {{backgroundColor: "rgb(65, 84, 175)", color: "white"}}>Share</Button>
                                         </div>
                                     </div>
-
-
-
-
                                 </CardContent>
                             </Card>
                         </div>
